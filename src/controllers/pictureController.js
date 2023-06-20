@@ -1,3 +1,6 @@
+const Picture = require("../models/Picture");
+const fs = require("fs");
+
 const {
   createPicturesService,
   getAllPicturesService,
@@ -45,14 +48,10 @@ exports.getOnePicture = async (req, res) => {
 exports.deletePictures = async (req, res) => {
   try {
     const { id } = req.params;
+    const picture = await getOnePictureService(id);
+    fs.unlinkSync(picture.src);
 
-    const picture = getOnePictureService(id);
-
-    if (!picture) {
-      return res.status(404).json({ message: "Image not found!" });
-    }
-
-    await deletePicturesService(id, picture);
+    await deletePicturesService(id);
 
     res.status(200).json({ message: "Picture deleted with success!" });
   } catch (error) {

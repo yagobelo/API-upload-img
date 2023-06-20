@@ -12,9 +12,6 @@ exports.createPicturesService = (name, file) => {
 
 exports.getAllPicturesService = () => Picture.find().sort({ _id: -1 });
 
-exports.getOnePictureService = (id) => Picture.findOne({ _id: id });
+exports.getOnePictureService = (id) => Picture.findById({ _id: id });
 
-exports.deletePicturesService = (id, picture) => {
-  fs.unlinkSync(picture.src);
-  return Picture.findOneAndDelete({ _id: id });
-};
+exports.deletePicturesService = (id) => Picture.deleteOne({ _id: id });
