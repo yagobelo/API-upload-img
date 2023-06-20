@@ -1,4 +1,3 @@
-const Picture = require("../models/Picture");
 const fs = require("fs");
 
 const {
@@ -25,8 +24,9 @@ exports.createPictures = async (req, res) => {
 exports.getAllPictures = async (req, res) => {
   try {
     const pictures = await getAllPicturesService();
+
     if (!pictures) {
-      return res.status(404).json({ message: "No picture found" });
+      return res.status(404).json({ message: "No images found" });
     }
     res.status(200).json({ message: pictures });
   } catch (error) {
@@ -39,6 +39,10 @@ exports.getOnePicture = async (req, res) => {
     const { id } = req.params;
     const picture = await getOnePictureService(id);
 
+    if (!picture) {
+      res.status(404).json({ message: "Image not found!" });
+    }
+
     res.status(200).json({ message: picture });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -49,8 +53,12 @@ exports.deletePictures = async (req, res) => {
   try {
     const { id } = req.params;
     const picture = await getOnePictureService(id);
-    fs.unlinkSync(picture.src);
 
+    if (!picture) {
+      res.status(404).json({ message: "Image not found!" });
+    }
+
+    fs.unlinkSync(picture.src);
     await deletePicturesService(id);
 
     res.status(200).json({ message: "Picture deleted with success!" });
