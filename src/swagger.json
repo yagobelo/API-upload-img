@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Upload Images API Documentation",
+    "description": "In this documentation you will be able to consult the API end-points and also test all available routes.",
+    "contact": "yago.belo00@gmail.com"
+  },
+  "version": "1.0.1",
+  "servers": [
+    {
+      "url": "http://localhost:8989",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/picture/": {
+      "post": {
+        "description": "Route responsible for upload image in database and local storage",
+        "summary": "upload image",
+        "tags": ["Picture"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Picture"
+              },
+              "exemples": {
+                "picture:": {
+                  "value": {
+                    "name": "File 01",
+                    "src": "file01.jpeg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses:": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/picture": {
+      "get": {
+        "description": "Route responsible for feching all images",
+        "summary": "Search all images",
+        "tags": ["Picture"],
+        "responses:": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "itens": {
+                    "$ref": "#/components/schemas/Picture"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/picture/{id}/": {
+      "get": {
+        "description": "Route responsible for feching image by id",
+        "summary": "Search image by id",
+        "tags": ["Picture"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "descripiton": "image for id",
+            "required": true
+          }
+        ],
+        "responses:": {
+          "404": {
+            "description": "Image not found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Picture"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/picture/{id}": {
+      "delete": {
+        "descrioption": "Route responsible for delete a image by id",
+        "summary": "Delete a image by id",
+        "tags": ["Picture"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "descripiton": "image for id",
+            "required": true
+          }
+        ],
+        "responses:": {
+          "404": {
+            "description": "Image not found"
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Picture": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "src": {
+            "type": "file"
+          }
+        }
+      }
+    }
+  }
+}
