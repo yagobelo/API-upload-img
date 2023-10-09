@@ -1,6 +1,5 @@
 # API para upload de imagens
 
-<img src="../images/haze-programmer-writing-code-on-laptop-1.png" width="200px" align="right" >
   <p align="left">
 Este projeto é uma api backend para realizar uploads de imagens.
   </p>
