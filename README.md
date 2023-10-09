@@ -45,6 +45,17 @@ npm run start
 - POST /picture - realiza o upload da imagem
 - DELETE /picture/:id - Deleta uma imagem passando o id como parametro
 
+## Imagens
+
+- Realizando upload:<br>
+  <img src="https://github.com/yagobelo/API-upload-img/blob/master/imagensProject/Captura%20de%20tela%202023-10-09%20131455.png" width="500px" /> <br>
+
+- Realizando Busca por todos as Imagens: <br>
+  <img src="https://github.com/yagobelo/API-upload-img/blob/master/imagensProject/getAll.png" width="500px" /> <br>
+  
+- Realizando Busca uma unica Imagens: <br>
+  <img src="https://github.com/yagobelo/API-upload-img/blob/master/imagensProject/getID.png" width="500px" /> <br>
+
 ## :technologist: Contribuidores
 
 <table>
